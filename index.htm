@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BloodLink Login/Register</title>
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h1>🩸 BloodLink</h1>
+      <p>Save Lives, One Link at a Time</p>
+    </div>
+
+    <div class="form-wrapper">
+      <div class="form-toggle">
+        <button id="loginBtn" class="active">Login</button>
+        <button id="registerBtn">Register</button>
+      </div>
+
+      <form id="loginForm" class="form active">
+        <h2>Sign In</h2>
+        <input type="tel" id="loginPhone" placeholder="Phone Number" required />
+        <button type="submit">Sign In</button>
+        <p class="demo-info">Demo: Use phone <b>9999999999</b> to login</p>
+        <p>New here? <span id="switchToRegister">Create an account</span></p>
+      </form>
+
+      <form id="registerForm" class="form">
+        <h2>Create Account</h2>
+        <input type="text" placeholder="Full Name" required />
+        <input type="tel" placeholder="Phone Number" required />
+        <select required>
+          <option value="">Select Blood Group</option>
+          <option value="A+">A+</option>
+          <option value="O+">O+</option>
+          <option value="B+">B+</option>
+          <option value="AB+">AB+</option>
+        </select>
+        <button type="submit">Sign Up</button>
+        <p class="terms">By signing up, you agree to our Terms & Privacy Policy</p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/index.js"></script>
+</body>
+</html>

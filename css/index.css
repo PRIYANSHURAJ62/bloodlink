@@ -1,0 +1,177 @@
+/* style.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  background: #b30000;
+  color: white;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.sidebar h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.sidebar p {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.form-wrapper {
+  width: 65%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideIn 0.8s ease-in-out;
+}
+
+.form-toggle {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.form-toggle button {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.form-toggle button.active {
+  background: #b30000;
+  color: #fff;
+}
+
+.form-toggle button {
+  background: #fff;
+  color: #b30000;
+  border: 1px solid #b30000;
+  border-radius: 5px 5px 0 0;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.form-toggle {
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.form.active {
+  display: block;
+}
+
+.form h2 {
+  margin-bottom: 1rem;
+}
+
+.form input,
+.form select {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form button {
+  background: #b30000;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.form button:hover {
+  background: #990000;
+}
+
+.form p span {
+  color: #b30000;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.terms {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.demo-info {
+  font-size: 0.9em;
+  color: #888;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 700px) {
+  .container {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+  .sidebar {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .form-wrapper {
+    width: 100%;
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .sidebar h1 {
+    font-size: 1.3rem;
+  }
+  .form-wrapper {
+    padding: 0.5rem 0.1rem;
+  }
+  .form input,
+  .form select,
+  .form button {
+    font-size: 1rem;
+    padding: 0.5rem 0.3rem;
+  }
+  .form-toggle button {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.7rem;
+  }
+}

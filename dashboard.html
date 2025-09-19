@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BloodLink Dashboard</title>
+  <link rel="stylesheet" href="css/dashbord.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">🩸 BloodLink</div>
+      <nav>
+        <ul>
+          <li class="active">Find Blood</li>
+          <li>Request Blood</li>
+          <li>Donate Blood</li>
+          <li>Upcoming Camps</li>
+          <li><a href="/feedback.html" class="feedback-link">Feedback</a></li>
+          <li><a href="/about.html" class="about-link">About it</a></li>
+        </ul>
+      </nav>
+      <div style="margin-top:2rem; text-align:center;">
+        <a href="/hospital-login.html" style="color:#b30000; text-decoration:underline; font-weight:bold;">Hospital Login</a>
+      </div>
+    </aside>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+      <header>
+        <h2>Welcome Priyanshu</h2>
+        <div class="header-row" style="display:flex;align-items:center;gap:1rem;">
+          <div class="blood-group">O+</div>
+          <div class="profile-avatar" id="profileAvatar" tabindex="0" title="View Profile">
+            <img src="WhatsApp Image 2025-09-19 at 17.48.11_12fd01e6.jpg" alt="Profile" />
+          </div>
+        </div>
+        <form class="search-bar" id="demoSearchForm">
+          <input type="text" placeholder="City" name="city" id="searchCity">
+          <select name="bloodgroup" id="searchBloodGroup">
+            <option value="">Blood Group</option>
+            <option value="A+">A+</option>
+            <option value="O+">O+</option>
+            <option value="B+">B+</option>
+            <option value="AB+">AB+</option>
+            <option value="A-">A-</option>
+            <option value="O-">O-</option>
+            <option value="B-">B-</option>
+            <option value="AB-">AB-</option>
+          </select>
+          <button type="submit">Search</button>
+        </form>
+        <div id="searchResult"></div>
+        <div class="profile-popup" id="profilePopup">
+          <div class="profile-popup-content">
+            <span class="close-profile" id="closeProfilePopup">&times;</span>
+            <div class="profile-avatar-large">
+              <img src="WhatsApp Image 2025-09-19 at 17.48.11_12fd01e6.jpg" alt="Profile" />
+            </div>
+            <h3>Priyanshu Raj Chauhan
+            </h3>
+            <p><b>Blood Group:</b> O+</p>
+            <div class="profile-stats">
+              <div>
+                <span class="stat-label">Donated</span>
+                <span class="stat-value">3 times</span>
+              </div>
+              <div>
+                <span class="stat-label">Received</span>
+                <span class="stat-value">1 time</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="actions">
+        <button id="findBloodBtn">Find Blood</button>
+        <button id="requestBloodBtn">Request Blood</button>
+        <button id="donateBloodBtn">Donate Blood</button>
+      </section>
+      <section id="demoActionResult"></section>
+      <section class="upcoming">
+        <h3>Upcoming Blood Camps</h3>
+        <div class="camp-book">
+          <!-- All camp cards are now inside this book-like container -->
+          <div class="camp-card card-orange">
+            <span class="date">25 Oct</span>
+            <div class="details">
+              <strong>Jaipur Blood Drive Camp</strong>
+              <p>5 km away now</p>
+            </div>
+          </div>
+          <div class="camp-card card-blue">
+            <span class="date">28 Oct</span>
+            <div class="details">
+              <strong>Delhi Mega Blood Donation</strong>
+              <p>12 km away now</p>
+            </div>
+          </div>
+          <div class="camp-card card-purple">
+            <span class="date">30 Oct</span>
+            <div class="details">
+              <strong>Mumbai LifeSaver Camp</strong>
+              <p>18 km away now</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="map-section">
+        <h3>Find Nearby Blood Camps on Map</h3>
+        <div class="map-container" style="width:100%;height:400px;max-width:none;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.817080869939!2d75.7872703150444!3d26.91243398312664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db3b2b2d3e3e3%3A0x7e8b7e8b7e8b7e8b!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+            width="100%"
+            height="400"
+            style="border:0; border-radius:8px; display:block;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+
+    <!-- Request Blood Panel -->
+    <aside class="request-panel">
+      <h3>Request Blood</h3>
+      <div class="illustration">🛏️💧</div>
+      <h4>Broadcast Request</h4>
+      <p>Notify registered donors in your area</p>
+      <button class="broadcast-btn">Broadcast Request</button>
+    </aside>
+  </div>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

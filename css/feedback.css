@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
+.feedback-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.06);
+  padding: 2rem 1.5rem;
+}
+h1, h2 {
+  color: #b30000;
+  margin-bottom: 1rem;
+}
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+.feedback-form input,
+.feedback-form textarea {
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+.feedback-form button {
+  background: #b30000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.feedback-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.feedback-card {
+  background: #ffeaea;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 6px rgba(0,0,0,0.03);
+}
+.feedback-card strong {
+  color: #b30000;
+}

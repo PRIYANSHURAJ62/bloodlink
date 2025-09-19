@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospital Dashboard - BloodLink</title>
+  <link rel="stylesheet" href="/index.css" />
+  <style>
+    .hospital-dashboard {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.06);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hospital-dashboard h1 {
+      color: #b30000;
+      margin-bottom: 1.5rem;
+    }
+    .hospital-dashboard .stats {
+      display: flex;
+      justify-content: space-around;
+      margin: 2rem 0;
+      gap: 2rem;
+    }
+    .hospital-dashboard .stat-card {
+      background: #ffeaea;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      min-width: 120px;
+    }
+    .hospital-dashboard .stat-label {
+      color: #888;
+      font-size: 1rem;
+    }
+    .hospital-dashboard .stat-value {
+      font-size: 1.5rem;
+      color: #b30000;
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+    .hospital-dashboard .actions {
+      margin-top: 2rem;
+    }
+    .hospital-dashboard button {
+      background: #b30000;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0 0.5rem;
+    }
+    /* Animated stats */
+    .stat-value.animated {
+      animation: popStat 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes popStat {
+      0% { transform: scale(0.7); opacity: 0.5; }
+      70% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    /* Recent Requests */
+    .recent-requests {
+      margin: 2.5rem 0 1.5rem 0;
+      text-align: left;
+    }
+    .recent-requests h2 {
+      color: #b30000;
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+    }
+    .request-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .request-list li {
+      background: #f3f3f3;
+      border-left: 4px solid #b30000;
+      margin-bottom: 0.6rem;
+      padding: 0.7rem 1rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: fadeInReq 0.7s;
+    }
+    @keyframes fadeInReq {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .request-status {
+      font-size: 0.95rem;
+      color: #fff;
+      background: #b30000;
+      border-radius: 10px;
+      padding: 0.2rem 0.7rem;
+      margin-left: 1rem;
+    }
+    .request-status.fulfilled { background: #43a047; }
+    .request-status.pending { background: #fbc02d; color: #333; }
+    /* Top Donors */
+    .top-donors {
+      margin: 2rem 0 1.5rem 0;
+      text-align: left;
+    }
+    .top-donors h2 {
+      color: #b30000;
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+    }
+    .donor-list {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .donor-card {
+      background: #e3f2fd;
+      border-radius: 8px;
+      padding: 0.8rem 1.2rem;
+      min-width: 120px;
+      text-align: center;
+      box-shadow: 0 0 6px rgba(0,0,0,0.04);
+      animation: fadeInDonor 0.7s;
+    }
+    @keyframes fadeInDonor {
+      from { opacity: 0; transform: scale(0.8);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    .donor-card .donor-name {
+      font-weight: bold;
+      color: #1976d2;
+      margin-bottom: 0.2rem;
+    }
+    .donor-card .donor-blood {
+      color: #b30000;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    /* Logout animation */
+    .logout-message {
+      display: none;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 16px rgba(0,0,0,0.13);
+      padding: 2rem 2.5rem;
+      color: #b30000;
+      font-size: 1.3rem;
+      z-index: 10;
+      animation: fadeOutLogout 1.2s;
+    }
+    @keyframes fadeOutLogout {
+      0% { opacity: 0; transform: translate(-50%,-60%) scale(0.8);}
+      40% { opacity: 1; transform: translate(-50%,-50%) scale(1.05);}
+      100% { opacity: 0; transform: translate(-50%,-40%) scale(0.7);}
+    }
+    @media (max-width: 700px) {
+      .hospital-dashboard {
+        padding: 1rem 0.3rem;
+      }
+      .stats {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .donor-list {
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hospital-dashboard">
+    <h1>🏥 Welcome, City Hospital</h1>
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Blood Requests</div>
+        <div class="stat-value animated" id="statRequests">12</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Fulfilled</div>
+        <div class="stat-value animated" id="statFulfilled">9</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Pending</div>
+        <div class="stat-value animated" id="statPending">3</div>
+      </div>
+    </div>
+    <div class="recent-requests">
+      <h2>Recent Requests</h2>
+      <ul class="request-list">
+        <li>
+          <span>O+ needed for surgery <small>(12 Oct)</small></span>
+          <span class="request-status fulfilled">Fulfilled</span>
+        </li>
+        <li>
+          <span>B- urgent for accident <small>(11 Oct)</small></span>
+          <span class="request-status pending">Pending</span>
+        </li>
+        <li>
+          <span>AB+ for ICU patient <small>(10 Oct)</small></span>
+          <span class="request-status fulfilled">Fulfilled</span>
+        </li>
+      </ul>
+    </div>
+    <div class="top-donors">
+      <h2>Top Donors This Month</h2>
+      <div class="donor-list">
+        <div class="donor-card">
+          <div class="donor-name">Ravi Kumar</div>
+          <div class="donor-blood">O+</div>
+          <div>3 times</div>
+        </div>
+        <div class="donor-card">
+          <div class="donor-name">Priya Singh</div>
+          <div class="donor-blood">A+</div>
+          <div>2 times</div>
+        </div>
+        <div class="donor-card">
+          <div class="donor-name">Amit Patel</div>
+          <div class="donor-blood">B-</div>
+          <div>2 times</div>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="reqBloodBtn">Request Blood</button>
+      <button id="viewDonorsBtn">View Donors</button>
+      <button id="logoutBtn">Logout</button>
+    </div>
+    <div class="logout-message" id="logoutMsg">Logging out... See you soon!</div>
+  </div>
+  <script>
+    // Animate stats on load
+    document.querySelectorAll('.stat-value').forEach(el => {
+      el.classList.remove('animated');
+      setTimeout(() => el.classList.add('animated'), 200);
+    });
+
+    // Demo: Request Blood button
+    document.getElementById('reqBloodBtn').onclick = function() {
+      alert('Demo: Blood request form will open here.');
+    };
+    // Demo: View Donors button
+    document.getElementById('viewDonorsBtn').onclick = function() {
+      alert('Demo: Donor list will be shown here.');
+    };
+    // Demo: Logout button with animation
+    document.getElementById('logoutBtn').onclick = function() {
+      const msg = document.getElementById('logoutMsg');
+      msg.style.display = 'block';
+      setTimeout(() => {
+        msg.style.display = 'none';
+        window.location.href = '/hospitallogin/hospital-login.html';
+      }, 1200);
+    };
+  </script>
+</body>
+</html>
